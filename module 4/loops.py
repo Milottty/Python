@@ -50,7 +50,7 @@ scores = [68, 54, 21, 13, 67 ,81]
 total = 0
 count = 0
 
-mesatarja = 0
+mesatarja = 0.
 
 for score in scores:
     if score<50:
