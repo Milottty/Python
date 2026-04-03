@@ -131,4 +131,4 @@ bmi = person.bmi_cal()
 print("BMI:", bmi)
 
 category = person.get_bmi_category()
-print("Category:", category)
+print("Categ`ory:", category)
