@@ -1,3 +1,5 @@
+import streamlit as st
+
 class Person:
     def __init__(self, name, age, weight, height):
         self.name = name
@@ -30,7 +32,7 @@ class Person:
             self.height = new_height
 
 
-        
+
 
 
 
@@ -45,7 +47,7 @@ class Person:
 
 class Adult(Person):
     def bmi_cal(self):
-        return (self.weight) / (self.weight**2)
+        return (self.weight) / (self.height**2)
 
     def get_bmi_category(self):
         bmi = self.bmi_cal()
@@ -62,7 +64,7 @@ class Adult(Person):
 
 class Child(Person):
     def bmi_cal(self):
-        return (self.weight) / (self.weight**2) * 1.3
+        return (self.weight) / (self.height**2) * 1.3
 
 
     def get_bmi_category(self):
@@ -77,58 +79,26 @@ class Child(Person):
             return "Obese"
 
 
-while True:
-    user_name= input("Enter your name: ")
+st.title("BMI Calculator")
 
-    if user_name.isalpha():
-        print("Valid input:", user_name)
-        break
-    else:
-        print("Try again! No numbers allowed.")
+user_name = st.text_input("Enter your name")
+user_age = st.number_input("Enter your age", min_value=0)
+user_height = st.number_input("Enter your height (meters)", min_value=0.0)
+user_weight = st.number_input("Enter your weight (kg)", min_value=0.0)
 
-while True:
-    user_age = input("Enter your age: ")
+if st.button("Calculate"):
+    if user_name.isalpha() and user_age > 0 and user_height > 0 and user_weight > 0:
 
-    if user_age.isdigit():
-        print("Valid number:", user_age)
-        break
-    else:
-        print("Try again! Only numbers allowed.")
-
-while True:
-    user_height = input("Enter your Height (In Centimeters): ")
-
-    if user_height.isdigit():
-        print("Valid number:", user_height)
-        break
-    else:
-        print("Try again! Only numbers allowed.")
-
-while True:
-    user_weight = input("Enter your Weight (In Kilograms): ")
-
-    try:
-        user_weight = float(user_weight)
-
-        if user_weight > 0:
-            print("Valid number:", user_weight)
-            break
+        if user_age < 18:
+            person = Child(user_name, user_age, user_weight, user_height)
         else:
-            print("Your weight needs to be positive. Try again.")
+            person = Adult(user_name, user_age, user_weight, user_height)
 
-    except ValueError:
-        print("Enter a number")
+        bmi = person.bmi_cal()
+        category = person.get_bmi_category()
 
-user_age = int(user_age)
-user_height = float(user_height)
+        st.write("BMI:", bmi)
+        st.write("Category:", category)
 
-if user_age < 18:
-    person = Child(user_name, user_age, user_weight, user_height)
-else:
-    person = Adult(user_name, user_age, user_weight, user_height)
-
-bmi = person.bmi_cal()
-print("BMI:", bmi)
-
-category = person.get_bmi_category()
-print("Categ`ory:", category)
+    else:
+        st.error("Invalid input!")
