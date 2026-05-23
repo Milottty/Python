@@ -7,29 +7,29 @@ class Person:
         self.weight = weight
         self.height = height
 
-        def get_name(self):
-            return self.name
+    def get_name(self):
+        return self.name
 
-        def set_name(self, new_name):
-            self.name = new_name
+    def set_name(self, new_name):
+        self.name = new_name
 
-        def get_age(self):
-            return self.age
+    def get_age(self):
+        return self.age
 
-        def set_age(self, new_age):
-            self.age = new_age
+    def set_age(self, new_age):
+        self.age = new_age
 
-        def get_weight(self):
-            return self.weight
+    def get_weight(self):
+        return self.weight
 
-        def set_weight(self, new_weight):
-            self.weight = new_weight
+    def set_weight(self, new_weight):
+        self.weight = new_weight
 
-        def get_height(self):
-            return self.height
+    def get_height(self):
+        return self.height
 
-        def set_height(self, new_height):
-            self.height = new_height
+    def set_height(self, new_height):
+        self.height = new_height
 
 
 
