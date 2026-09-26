@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from streamlit import title
+
 
 books_df=pd.read_csv('bestsellers with categories.csv')
 
